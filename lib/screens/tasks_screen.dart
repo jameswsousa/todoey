@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoey/widgets/tasks_list.dart';
 
 class TasksScreen extends StatelessWidget {
   @override
@@ -42,9 +43,6 @@ class TasksScreen extends StatelessWidget {
                 ),
                 Text('12 Tasks',
                     style: TextStyle(color: Colors.white, fontSize: 18)),
-                SizedBox(
-                  height: 30,
-                ),
               ],
             ),
           ),
@@ -56,30 +54,7 @@ class TasksScreen extends StatelessWidget {
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20),
                   )),
-              child: Column(
-                children: <Widget>[
-                  CheckboxListTile(
-                    value: true,
-                    onChanged: null,
-                    title: Text(
-                      'Tarefa 1',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    activeColor: Colors.white,
-                    checkColor: Colors.black,
-                  ),
-                  CheckboxListTile(
-                    value: false,
-                    onChanged: null,
-                    title: Text(
-                      'Tarefa 1',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    activeColor: Colors.black,
-                    checkColor: Colors.black,
-                  ),
-                ],
-              ),
+              child: TasksList(),
             ),
           ),
         ],
