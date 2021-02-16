@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
 class AddTaskScreen extends StatelessWidget {
+  final Function addtask;
+
+  const AddTaskScreen(this.addtask);
+
   @override
   Widget build(BuildContext context) {
+    String text;
     return Container(
       color: Color(0xff757575),
       child: Container(
@@ -23,6 +28,9 @@ class AddTaskScreen extends StatelessWidget {
             ),
             TextField(
               autofocus: true,
+              onChanged: (value) {
+                text = value;
+              },
               textAlign: TextAlign.center,
               cursorColor: Colors.lightBlueAccent,
               decoration: InputDecoration(
@@ -42,7 +50,9 @@ class AddTaskScreen extends StatelessWidget {
             FlatButton(
               color: Colors.lightBlueAccent,
               padding: EdgeInsets.all(20),
-              onPressed: () {},
+              onPressed: () {
+                addtask(text);
+              },
               child: Text(
                 'Add',
                 style: TextStyle(color: Colors.white, fontSize: 20),
