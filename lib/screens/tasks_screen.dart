@@ -1,20 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:todoey/models/task.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/models/task_data.dart';
 import 'package:todoey/screens/add_task_screen.dart';
 import 'package:todoey/widgets/tasks_list.dart';
 
-class TasksScreen extends StatefulWidget {
-  @override
-  _TasksScreenState createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [
-    Task(text: 'Lavar banheiro'),
-    Task(text: 'Varrer Casa'),
-    Task(text: 'Temperar Frango'),
-  ];
-
+class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,12 +20,7 @@ class _TasksScreenState extends State<TasksScreen> {
             context: context,
             builder: (context) => SingleChildScrollView(
               child: Container(
-                child: AddTaskScreen((ppp) {
-                  setState(() {
-                    tasks.add(Task(text: ppp));
-                  });
-                  Navigator.pop(context);
-                }),
+                child: AddTaskScreen(),
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom),
               ),
@@ -71,7 +56,8 @@ class _TasksScreenState extends State<TasksScreen> {
                       fontSize: 50,
                       fontWeight: FontWeight.w700),
                 ),
-                Text('${tasks.length} ${tasks.length > 1 ? 'Tasks' : 'Task'}',
+                Text(
+                    '${Provider.of<TaskData>(context).taskCount} ${Provider.of<TaskData>(context).taskCount > 1 ? 'Tasks' : 'Task'}',
                     style: TextStyle(color: Colors.white, fontSize: 18)),
               ],
             ),
@@ -84,12 +70,7 @@ class _TasksScreenState extends State<TasksScreen> {
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20),
                   )),
-              child: TasksList(
-                tasks: tasks,
-                // checkboxCallback: (index) {
-                //   tasks[index].toggleDone();
-                // },
-              ),
+              child: TasksList(),
             ),
           ),
         ],
